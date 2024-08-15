@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Sum List"""
+from typing import List
 
 
-def sum_list(input_list: list) -> float:
+def sum_list(input_list: List[float]) -> float:
     """ Input Sum """
-    return sum(input_list)
+    return float(sum(input_list))
