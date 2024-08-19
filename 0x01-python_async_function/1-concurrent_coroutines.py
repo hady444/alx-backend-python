@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
-'''Asynchronous Python
+'''Asyncronus python
 '''
-import random
 import asyncio
-from typing import Generator
+from typing import List
 
 
-async def async_generator() -> Generator[float, None, None]:
-    '''yeild a random number at 1sec interval
+wait_random = __import__('0-basic_async_syntax').wait_random
+
+
+async def wait_n(n: int, max_delay: int) -> List[float]:
+    '''return a list of awaited response from previous function
     '''
-    for _ in range(10):
-        await asyncio.sleep(1)
-        yield random.random() * 10
+    res = await asyncio.gather(
+        *tuple(map(lambda _: wait_random(max_delay), range(n)))
+    )
+    return sorted(res)
