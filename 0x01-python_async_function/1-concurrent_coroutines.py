@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
-"""
-Python Async
-"""
+'''Asynchronous Python
+'''
+import random
 import asyncio
-from typing import List
-import bisect
-wait_random = __import__('0-basic_async_syntax').wait_random
+from typing import Generator
 
 
-async def wait_n(n: int = 5, max_delay: int = 10) -> List[float]:
-    li = []
-    for _ in range(n):
-        wait = await wait_random(max_delay)
-        bisect.insort(li, wait)
-    return li
+async def async_generator() -> Generator[float, None, None]:
+    '''yeild a random number at 1sec interval
+    '''
+    for _ in range(10):
+        await asyncio.sleep(1)
+        yield random.random() * 10
