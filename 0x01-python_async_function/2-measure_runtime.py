@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-'''Asynchronous Python
+'''Asyncronus python
 '''
 import asyncio
+import time
+
+wait_n = __import__('1-concurrent_coroutines').wait_n
 
 
-async def async_generator() -> Generator[float, None, None]:
-    '''yeild a random number at 1sec interval
+async def measure_time(n: int, max_delay: int) -> List[float]:
+    '''return a list of awaited response from previous function
     '''
-    for _ in range(10):
-        await asyncio.sleep(1)
-        yield random.random() * 10
+    start = time.time()
+    await wait_n(n, max_delay)
+    return ((start - time.time()) / n)
